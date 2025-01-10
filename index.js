@@ -1,3 +1,4 @@
+console.log(`==============================Part1=========================================`);
 // The area in which the plants are contained is circular, with a radius of 5 meters.
 // The formula for calculating the area of a circle is PI multiplied by the radius, squared:
 // const PI = 3.1415;
@@ -77,6 +78,26 @@ console.log(`==============================Part2================================
 //100*(Pow(2,9))
 // The amount of additional space that would be required if the scientists were to start with 100 plants, and did not prune them for 10 weeks.
 // If the space remained circular, what would be the radius of this expanded garden?
+
+const startingPlantCount = 100;
+
+//?To calculate- Each week plant count doubles and after 10 weeks
+let plantCountWeek10 = startingPlantCount * (Math.pow(2,9));
+
+console.log(`Starting Plant Count       : ${startingPlantCount}`);
+console.log(`Plant Count after Week10   : ${plantCountWeek10}`);
+
+//?To calculate area of garden required to plant till week10
+//?Area required per plant 0.8 sq. meters
+let expandedArea = plantCountWeek10 * 0.8;
+console.log(`Totalarea required         : ${expandedArea} square meters`);
+
+let newGardenRadius = Math.sqrt(expandedArea/PI);
+console.log(`New radius of the garden   : ${Math.round(newGardenRadius)} meters`);
+
+console.log(`=============================================================================`);
+
+
 
 
 
