@@ -19,7 +19,6 @@ console.log(`Area required per plant        : ${areaPerPlant} square meters`)
 const week1 = 1;
 const startingPlant = 20;
 
-
 //? Calculating max. plant capacity
 const maxPlantCapacity = totalArea / areaPerPlant;
 console.log(`Max. Garden capacity           : ${Math.round(maxPlantCapacity)} Plants`);
@@ -33,56 +32,59 @@ console.log(`Week2 - Number of Plants       : ${numberofPlantWeek2}`);
 console.log(`Week3 - Number of Plants       : ${numberofPlantWeek3}`);
 
 console.log(`***********************************************************************`);
+
+const thresholdUpper = 80/100;
+const thresholdLower = 50/100;
 //? Week1 - To decide whether to prune, monitor, or plant more
-if(numberOfPlantWeek1 > 0.8 * maxPlantCapacity)
+if(numberOfPlantWeek1 > thresholdUpper * maxPlantCapacity)
 {    
-    console.log(`Week1 - Exceeds 80% of the capacity of the garden, Plants can be Pruned now!!`);     
+    console.log(`Week1 - Plants can be PRUNED now!!`);     
 }
-else if(numberOfPlantWeek1 >= 0.5 * maxPlantCapacity){    
-    console.log(`Week1 - 50% - 80% of the garden covered, Plants can be Monitored now!!`);    
+else if(numberOfPlantWeek1 >= thresholdLower * maxPlantCapacity){    
+    console.log(`Week1 - Plants can be MONITORED now!!`);    
 }
 else
 {    
-    console.log(`Week1 - Only 50% of the garden covered, plants can be PLANTED more!!`);    
+    console.log(`Week1 - more plants can be PLANTED!!`);    
 }
 
 //? Week2 - To decide whether to prune, monitor, or plant more
-if(numberofPlantWeek2 > 0.8 * maxPlantCapacity)
+if(numberofPlantWeek2 > thresholdUpper * maxPlantCapacity)
     {        
-        console.log(`Week2 - Exceeds 80% of the garden, Plants can be Pruned now!!`);        
+        console.log(`Week2 - Plants can be PRUNED now!!`);        
     }
-    else if(numberofPlantWeek2 >= 0.5 * maxPlantCapacity){        
-        console.log(`Week2 - 50% - 80% of the capacity of the garden covered, Plants can be Monitored now!!`);        
+    else if(numberofPlantWeek2 >= thresholdLower * maxPlantCapacity){        
+        console.log(`Week2 - Plants can be MONITORED now!!`);        
     }
     else
     {       
-        console.log(`Week2 - Only 50% of the garden covered, plants can be PLANTED more!!`);        
+        console.log(`Week2 - more plants can be PLANTED!!`);        
     }
 
     //? Week3 - To decide whether to prune, monitor, or plant more
-if(numberofPlantWeek3 > 0.8 * maxPlantCapacity)
+if(numberofPlantWeek3 > thresholdUpper * maxPlantCapacity)
     {        
-        console.log(`Week3 - Exceeds 80% of the capacity of the garden, Plants can be Pruned now!!`);        
+        console.log(`Week3 - Plants can be PRUNED now!!`);        
     }
-    else if(numberofPlantWeek3 >= 0.5 * maxPlantCapacity){       
-        console.log(`Week3 - 50% - 80% of the garden covered, Plants can be Monitored now!!`);        
+    else if(numberofPlantWeek3 >= thresholdLower * maxPlantCapacity){       
+        console.log(`Week3 - Plants can be MONITORED now!!`);        
     }
     else
     {        
-        console.log(`Week3 - Only 50% of the garden covered, plants can be PLANTED more!!`);        
+        console.log(`Week3 - more plants can be PLANTED!!`);        
     }
     console.log(`***********************************************************************`);
 
 console.log(`==============================Part2=========================================`);
 
-//100*(Pow(2,9))
-// The amount of additional space that would be required if the scientists were to start with 100 plants, and did not prune them for 10 weeks.
-// If the space remained circular, what would be the radius of this expanded garden?
+//?100*(Pow(2,9))
+//? The amount of additional space that would be required if the scientists were to start with 100 plants, and did not prune them for 10 weeks.
+//? If the space remained circular, what would be the radius of this expanded garden?
 
 const startingPlantCount = 100;
 
 //?To calculate- Each week plant count doubles and after 10 weeks
-let plantCountWeek10 = startingPlantCount * (Math.pow(2,9));
+let plantCountWeek10 = startingPlantCount * (Math.pow(2,10));
 
 console.log(`Starting Plant Count       : ${startingPlantCount}`);
 console.log(`Plant Count after Week10   : ${plantCountWeek10}`);
@@ -90,17 +92,34 @@ console.log(`Plant Count after Week10   : ${plantCountWeek10}`);
 //?To calculate area of garden required to plant till week10
 //?Area required per plant 0.8 sq. meters
 let expandedArea = plantCountWeek10 * 0.8;
-console.log(`Totalarea required         : ${expandedArea} square meters`);
+console.log(`Totalarea required         : ${Math.round(expandedArea *100)/100} square meters`);
 
 let newGardenRadius = Math.sqrt(expandedArea/PI);
 console.log(`New radius of the garden   : ${Math.round(newGardenRadius)} meters`);
 
+console.log(`==============================Part3=========================================`);
+// If the amount of space required to hold the originally provided number of plants exceeds the amount of space available, throw a new error and log an appropriate message.
+//Let's assign availableArea = totalArea(Part 1), requiredArea = expandedArea (Part 2)
+
+const availableArea = totalArea; 
+const requiredArea = expandedArea;
+
+try
+{
+    if(requiredArea > availableArea)
+    {
+            throw new Error(`Available garden area ${Math.round(availableArea *100)/100} square meters is smaller than required garden area ${Math.round(requiredArea*100)/100} square \n\       meters so increase garden space to plant these ${plantCountWeek10} plants.`);
+    }
+}
+catch(error)
+{
+    console.log(`${error}`);
+}
+finally
+{
+    console.log(`Plant count after week10   : ${plantCountWeek10}`);
+    console.log(`Available Garden Area      : ${Math.round(availableArea *100)/100} square meters`);
+    console.log(`Required Garden Area       : ${Math.round(requiredArea*100)/100} square meters`);
+}
+
 console.log(`=============================================================================`);
-
-
-
-
-
-
-
-
