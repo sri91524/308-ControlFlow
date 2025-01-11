@@ -1,17 +1,18 @@
 console.log(`==============================Part1=========================================`);
-// The area in which the plants are contained is circular, with a radius of 5 meters.
-// The formula for calculating the area of a circle is PI multiplied by the radius, squared:
-// const PI = 3.1415;
-// const area = PI * radius * radius;
-// Each plant requires a minimum space of 0.8 square meters.
-// The area is starting with 20 plants.
-// The plants double in number every week.
+//? The area in which the plants are contained is circular, with a radius of 5 meters.
+//? The formula for calculating the area of a circle is PI multiplied by the radius, squared:
+//? const PI = 3.1415;
+//? const area = PI * radius * radius;
+//? Each plant requires a minimum space of 0.8 square meters.
+//? The area is starting with 20 plants.
+//? The plants double in number every week.
 
 const PI = 3.1415;
 const radiusGarden = 5;
 const areaPerPlant = 0.8;
 
 //? Calculating Total Area of the Garden
+//? round up to 2 decimals
 const totalArea = PI * radiusGarden * radiusGarden;
 console.log(`Total Area of Garden           : ${Math.round(totalArea *100)/100} square meters`);
 console.log(`Area required per plant        : ${areaPerPlant} square meters`)
@@ -98,8 +99,8 @@ let newGardenRadius = Math.sqrt(expandedArea/PI);
 console.log(`New radius of the garden   : ${Math.round(newGardenRadius)} meters`);
 
 console.log(`==============================Part3=========================================`);
-// If the amount of space required to hold the originally provided number of plants exceeds the amount of space available, throw a new error and log an appropriate message.
-//Let's assign availableArea = totalArea(Part 1), requiredArea = expandedArea (Part 2)
+//? If the amount of space required to hold the originally provided number of plants exceeds the amount of space available, throw a new error and log an appropriate message.
+//?Let's assign availableArea = totalArea(Part 1), requiredArea = expandedArea (Part 2)
 
 const availableArea = totalArea; 
 const requiredArea = expandedArea;
